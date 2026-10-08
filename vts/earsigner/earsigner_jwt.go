@@ -36,7 +36,7 @@ func (o *JWT) Close() error {
 }
 
 func (o JWT) Sign(earClaims ear.AttestationResult) ([]byte, error) {
-	return earClaims.Sign(o.Alg, o.Key)
+	return signWithLifetime(earClaims, o.Alg, o.Key)
 }
 
 func (o JWT) GetEARSigningPublicKey() (jwa.KeyAlgorithm, jwk.Key, error) {
