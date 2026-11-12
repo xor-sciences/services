@@ -10,14 +10,14 @@ jobs:
         os: [ubuntu-latest, ubuntu-24.04-arm]
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2
     - name: Set up Veraison deployment
       run: make docker-deploy
     - name: Run integration tests
       run: make integ-test | tee tavern-tests.log
     - name: Archive tavern container log
       if: always()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
       with:
         name: tavern-logs
         path: ./tavern-tests.log
@@ -37,7 +37,7 @@ jobs:
       run: deployments/docker/veraison get-logs container-logs
     - name: Archive container logs
       if: always()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
       with:
         name: container-logs
         path: ./container-logs
