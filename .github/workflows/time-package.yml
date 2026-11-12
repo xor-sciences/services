@@ -16,12 +16,12 @@ jobs:
       GO111MODULE: on
       CI_PIPELINE: true
     steps:
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
         with:
           go-version: "1.26"
           cache: false
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           fetch-tags: true
           fetch-depth: 0
@@ -37,7 +37,7 @@ jobs:
         run: |
           go install golang.org/x/tools/cmd/guru@latest
       - name: Install Protoc
-        uses: arduino/setup-protoc@v1
+        uses: arduino/setup-protoc@149f6c87b92550901b26acd1632e11c3662e381f # v1
         with:
           version: '3.x'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -47,7 +47,7 @@ jobs:
           go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
           go install github.com/mitchellh/protoc-gen-go-json@v1.1.0
       - name: Install packaging deps
-        uses: ConorMacBride/install-package@v1
+        uses: ConorMacBride/install-package@3e7ad059e07782ee54fa35f827df52aae0626f30 # v1
         with:
           apt: openssl sqlite3 gettext findutils jq
       - name: create deb
@@ -55,11 +55,11 @@ jobs:
           mkdir /tmp/veraison-package
           deployments/debian/deployment.sh create-deb /tmp/veraison-package
       - name: upload deb
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: Veraison services Debian package
           path: /tmp/veraison-package/*deb
       - name: attest deb
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2
         with:
           subject-path: /tmp/veraison-package/*deb
