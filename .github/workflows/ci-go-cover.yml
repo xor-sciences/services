@@ -24,11 +24,11 @@ jobs:
       GO111MODULE: on
       CI_PIPELINE: true
     steps:
-    - uses: actions/setup-go@v5
+    - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
       with:
         go-version: "1.26"
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2
     - name: Install NVIDIA Attestation SDK headers
       uses: ./.github/actions/install-nvat-dev
     - name: Install mockgen
@@ -41,7 +41,7 @@ jobs:
       run: |
         go install golang.org/x/tools/cmd/guru@latest
     - name: Install Protoc
-      uses: arduino/setup-protoc@v1
+      uses: arduino/setup-protoc@149f6c87b92550901b26acd1632e11c3662e381f # v1
       with:
         version: '3.x'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
